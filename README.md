@@ -1,59 +1,64 @@
-# ESLint, Prettier, Husky Set up
+# ESLint, Prettier, Lint-Staged setup
 
-[Resource](https://www.youtube.com/watch?v=oWty0Nw1ydk)
+### 1. Make sure to have a `package.json` and have initialized git in your project directory.
 
-1. Create a new node project.
+```bash
+npm init
+git init
+```
 
-2. Install **husky** `npx husky-init` (and install the dependencies)
+### 2. Install needed dev dependencies.
 
-   > Husky is a JavaScript and Git tooling that makes configuring Git hooks easy.
+```bash
+npm install --save-dev eslint-config-prettier husky lint-staged
+npm install --save-dev --save-exact prettier
+```
 
-3. Install **lint-staged**
+### 3. Install and set up eslint.
 
-   >Lint-staged is a tool that can execute multiple commands (typically linters) against staged git files.
+```bash
+npm init @eslint/config
+```
 
-4.  Open `.\husky\pre-commit` and add `yarn lint-staged`. This runs lint-staged before every commit.
-
-5. Install **ESLint** and **Prettier** extensions for VSCode.
-
-> ESLint is a linter that analyzes your code for possible problems and bad practices.
+> Recommended options:
 >
-> Prettier is a code formatter that enforces good coding practices.
+> - **How would you like to use ESLint?:** To check syntax, find problems, and enforce code style
+> - **What type of modules does your project use?:** JavaScript modules (import/export)
+> - **How would you like to define a style for your project?:** Use a popular style guide
+> - **Which style guide do you want to follow?:** Airbnb
+> - **What format do you want your config file to be in?:** JSON
+> - **Would you like to install them (dependencies) now?:** Yes
 
-6. Install `eslint` and `prettier` as dev dependencies.
+### 4. Add `"prettier"` to the `"extends"` array in the `.eslintrc.*` file.
 
-7. Set up an `eslint` configuration file by passing the `--init` flag to `eslint` and answer the prompts
+Make sure to put it **last**, so it overrides other configs.
 
-   > Recommended options:
-   >
-   > - To check syntax, find problems, and enforce code style
-   >   - This ensures that ESLint works at full capacity (conflicts with prettier will be addressed later)
-   > - JavaScript modules (import/export )
-   > - *Pick whichever suites your case*
-   > - Typescript: No
-   > - Browser (for projects that use front-end frameworks); Node (for projects that are server-side)
-   > - Use a popular style guide
-   > - Airbnb
-   > - JSON
-   > - Yes
+```json
+"extends": [
+   /* other configs */,
+   "prettier"
+]
+```
 
-8. Set up a `prettier` configuration file by creating a `.prettierrc` file.
+### 5. Set up husky for lint-staged.
 
-9. Install `eslint-config-prettier` to disable rules that eslint and prettier has conflicts on.
+```bash
+npx husky install
+npm pkg set scripts.prepare="husky install"
+npx husky add .husky/pre-commit "npx lint-staged"
+```
 
-   > You may need to add `"prettier"` after the `"airbnb-base"` in your `.eslintrc.json` file.
+### 6. Set up lint-staged by adding the following to `package.json`.
 
-8. Add a `"lint-staged"` key to your `package.json` that contains your specified file glob pattern, and the array of commands you want to run when these files are staged.
+```json
+"lint-staged": {
+  "*.{js,jsx,ts,tsx}": "eslint --fix",
+  "**/*": "prettier --write --ignore-unknown"
+}
+```
 
-   ```json
-   ...
-   	"lint-staged" : {
-           "**/*.{js,jsx,ts,tsx}": [
-               "eslint",
-               "prettier --write"
-           ]
-       }
-   ```
+### Additional:
 
-   
-
+- To set up a Prettier configuration, create a `.prettierrc` file.
+- To exclude files from being formatted by Prettier, create a `.prettierignore` file.
+- The `"lint-staged"` object in `package.json` can be moved into a `.lintstagedrc` file.
