@@ -2,16 +2,11 @@
 
 ### 1. Make sure to have a `package.json` and have initialized git in your project directory.
 
-```bash
-npm init
-git init
-```
-
 ### 2. Install needed dev dependencies.
 
 ```bash
-npm install --save-dev eslint-config-prettier husky lint-staged
-npm install --save-dev --save-exact prettier
+npm install -D eslint-config-prettier husky lint-staged
+npm install -D -E prettier
 ```
 
 ### 3. Install and set up eslint.
