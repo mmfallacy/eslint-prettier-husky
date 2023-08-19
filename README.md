@@ -33,27 +33,33 @@ npm init @eslint/config
 
 Make sure to put it **last**, so it overrides other configs.
 
-```json
+```js
 "extends": [
    /* other configs */,
    "prettier"
 ]
 ```
 
-### 5. Set up husky for lint-staged.
+### 5. Set up husky.
 
 ```bash
-npx husky install
-npm pkg set scripts.prepare="husky install"
-npx husky add .husky/pre-commit "npx lint-staged"
+npx husky-init && npm install
 ```
 
 ### 6. Set up lint-staged by adding the following to `package.json`.
 
-```json
-"lint-staged": {
-  "*.{js,jsx,ts,tsx}": "eslint --fix",
-  "**/*": "prettier --write --ignore-unknown"
+```js
+{
+  // ...
+  "scripts": {
+    // ...
+    "test": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --fix",
+    "**/*": "prettier --write --ignore-unknown"
+  }
+  // ...
 }
 ```
 
@@ -61,4 +67,11 @@ npx husky add .husky/pre-commit "npx lint-staged"
 
 - To set up a Prettier configuration, create a `.prettierrc` file.
 - To exclude files from being formatted by Prettier, create a `.prettierignore` file.
-- The `"lint-staged"` object in `package.json` can be moved into a `.lintstagedrc` file.
+- The `"lint-staged"` object in `package.json` can be moved into a `.lintstagedrc.json` file.
+```js
+// .lintstagedrc.json
+{
+  "*.{js,jsx,ts,tsx}": "eslint --fix",
+  "**/*": "prettier --write --ignore-unknown"
+}
+```
