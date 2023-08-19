@@ -16,11 +16,9 @@ npm init @eslint/config
 ```
 
 > Recommended options:
->
 > - **How would you like to use ESLint?:** To check syntax, find problems, and enforce code style
 > - **What type of modules does your project use?:** JavaScript modules (import/export)
 > - **How would you like to define a style for your project?:** Use a popular style guide
-> - **Which style guide do you want to follow?:** Airbnb
 > - **What format do you want your config file to be in?:** JSON
 > - **Would you like to install them (dependencies) now?:** Yes
 
