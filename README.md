@@ -35,7 +35,7 @@ Make sure to put it **last**, so it overrides other configs.
 ### 5. Set up husky.
 
 ```bash
-npx husky-init
+npx husky init
 ```
 
 ### 6. Set up lint-staged by adding the following to `package.json`.
