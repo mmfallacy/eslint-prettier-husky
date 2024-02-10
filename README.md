@@ -9,7 +9,7 @@ npm install -D eslint-config-prettier husky lint-staged
 npm install -D -E prettier
 ```
 
-### 3. Install and set up eslint.
+### 3. (If your project doesn't yet have an `.eslintrc.*` file) Install and set up ESLint.
 
 ```bash
 npm init @eslint/config
@@ -19,10 +19,9 @@ npm init @eslint/config
 > - **How would you like to use ESLint?:** To check syntax, find problems, and enforce code style
 > - **What type of modules does your project use?:** JavaScript modules (import/export)
 > - **How would you like to define a style for your project?:** Use a popular style guide
-> - **What format do you want your config file to be in?:** JSON
 > - **Would you like to install them (dependencies) now?:** Yes
 
-### 4. Add `"prettier"` to the `"extends"` array in the `.eslintrc.*` file.
+### 4. Add `prettier` to the `extends` array in the `.eslintrc.*` file.
 
 Make sure to put it **last**, so it overrides other configs.
 
