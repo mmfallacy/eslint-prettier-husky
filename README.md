@@ -35,7 +35,7 @@ Make sure to put it **last**, so it overrides other configs.
 ### 5. Set up husky.
 
 ```bash
-npx husky-init && npm install
+npx husky-init
 ```
 
 ### 6. Set up lint-staged by adding the following to `package.json`.
@@ -50,7 +50,7 @@ npx husky-init && npm install
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
     "**/*": "prettier --write --ignore-unknown"
-  }
+  },
   // ...
 }
 ```
@@ -59,7 +59,7 @@ npx husky-init && npm install
 
 - To set up a Prettier configuration, create a `.prettierrc` file.
 - To exclude files from being formatted by Prettier, create a `.prettierignore` file.
-- The `"lint-staged"` object in `package.json` can be moved into a `.lintstagedrc.json` file.
+- The `lint-staged` object in `package.json` can be moved into a `.lintstagedrc.json` file.
 ```js
 // .lintstagedrc.json
 {
